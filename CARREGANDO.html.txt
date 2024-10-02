@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="17;url=https://sites.google.com/view/playvideoinacessivel">
+    <title>Carregando...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Capriola&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+            color: white;
+            font-size: 24px;
+            font-family: 'Capriola', sans-serif;
+            padding-top: 50px;
+        }
+        img {
+            width: 80%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://i.ibb.co/nf6JQNz/IMG-5069.jpg" alt="Carregando...">
+    <div id="loading-text">Abrindo sua conta</div>
+
+    <script>
+        const texts = [
+            "Abrindo sua conta",
+            "Carregando Séries e Filmes",
+            "Carregando design",
+            "Redirecionando"
+        ];
+        let textIndex = 0;
+        let dotCount = 0;
+        const textElement = document.getElementById('loading-text');
+
+        function updateText() {
+            textElement.innerText = texts[textIndex] + '.'.repeat(dotCount);
+        }
+
+        const textInterval = setInterval(() => {
+            dotCount = (dotCount + 1) % 4;
+            updateText();
+        }, 400);
+
+        const changeTextInterval = setInterval(() => {
+            if (textIndex < texts.length - 1) {
+                textIndex++;
+            } else {
+                clearInterval(changeTextInterval);
+                setTimeout(() => {
+                    clearInterval(textInterval);
+                }, 400); // Aguarda a última atualização de texto
+            }
+        }, 4000);
+
+        // Atualiza o texto inicial
+        updateText();
+    </script>
+</body>
+</html>
